@@ -1,0 +1,6 @@
+South_se108
+West_se108
+619
+0.01
+1
+/home/replicablebox/sharedFolderLinuxSemantic/
