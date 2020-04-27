@@ -1,0 +1,10 @@
+first we need to run the world 
+
+roslaunch calculate_trans_prob runTest.launch 
+
+
+then we need to run the test manager, this node calls the other node cross_door which is the one that saves the fails in a text file. 
+
+rosrun calculate_trans_prob calculate_trans_prob_node 
+
+

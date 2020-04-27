@@ -1,0 +1,12 @@
+<launch>
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="verbose" value="true"/>
+    <arg name="world_name" value="$(find logical_camera_plugin)/worlds/logical_camera.world"/>
+    <!-- more default parameters can be changed here -->
+  </include>
+
+ <node name="teleop_key_joy" pkg="p3dx_mover" type="mover.py" />
+
+
+</launch>

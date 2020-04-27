@@ -1,0 +1,16 @@
+<launch>
+  <!-- ros_args.launch -->
+  <arg name="goal1" value="South_se108" doc="This is the first goal to look for."/>
+  <arg name="goal2" value="West_se108" doc="This is the second goal to look for."/>
+  <arg name="failureProbability" value="0.01" doc="This is first constraint for the CMDP."/>
+  <arg name="typeExplorationStrategy" value="4" doc="There are 5 defined strategies, random=1, frontier =2, weighted frontier=3, semantic typeA=4, semantic typeA=5"/>
+  <arg name="sharedFolder" value="/sharedFolderLinuxSemantic/" doc="Select the folder where all the files will be shared."/>
+ <arg name="numTests" value="50" doc="Number of tests."/>
+  <arg name="startingPoint" value="C" doc="Select with starting points to use. options: A(all), B, C"/>
+  <arg name="temporalDeadlines" value="3940" doc="Select with starting points to use. options: 0(all) 680 477 272 68 2899 2030 1160 290 5628 3940 2251 563"/>
+
+ <!-- <node name="testing_semantic_cmdp_node" pkg="testing_semantic_cmdp" type="testing_semantic_cmdp_node" args=" $(arg goal1) $(arg goal2) $(arg failureProbability) $(arg typeExplorationStrategy) $(arg sharedFolder)"  launch-prefix="gnome-terminal -e" output="screen" /> -->
+<node name="testing_semantic_cmdp_node" pkg="testing_semantic_cmdp" type="testing_semantic_cmdp_node" args=" $(arg goal1)  $(arg goal2) $(arg failureProbability) $(arg typeExplorationStrategy) $(arg sharedFolder) $(arg numTests) $(arg startingPoint) $(arg temporalDeadlines)"   output="screen" /> 
+
+
+</launch>

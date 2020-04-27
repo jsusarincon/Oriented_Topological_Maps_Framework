@@ -1,0 +1,35 @@
+<launch>
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+
+	 <arg name="world_name" value="$(find testing_semantic_cmdp)/worlds/se1f1_17.world" /> <!--corridor, doorWorld-->
+
+
+	<arg name="paused" value="false"/>
+    	<arg name="use_sim_time" value="true"/>
+    	<arg name="gui" value="true"/>
+    	<arg name="recording" value="false"/>
+    	<arg name="debug" value="false"/>
+
+  </include>
+
+
+
+<!-- WHEN USING THIS NODE THE PLUGIN FOR THE ROBOT MODEL SHOULD SUBSCRIBE TO noisy_cmd_vel INSTEAD OF cmd_vel-->
+ <node name="add_noise_cmd_vel_node" pkg="add_noise_cmd_vel" type="add_noise_cmd_vel_node.py"  output="screen" /> 
+
+  <node name="add_noise_compass_node" pkg="add_noise_compass" type="add_noise_compass_node.py"  output="screen" /> 
+
+ <node name="direction_robot_node" pkg="direction_robot" type="direction_robot_node.py"  output="screen" /> 
+
+<node name="moverKeyboard" pkg="p3dx_mover" type="moverJLS.py" launch-prefix="gnome-terminal -e " output="screen" />
+
+
+<node name="maneuver_cross_door_node" pkg="maneuver_cross_door" type="maneuver_cross_door_node.py"  output="screen" /> 
+
+<node name="maneuver_go_corridor_node" pkg="maneuver_go_corridor" type="maneuver_go_corridor_node.py"  output="screen" /> 
+
+ <node name="cmdp_solver_node" pkg="cmdp_solver" type="cmdp_solver_node"  launch-prefix="gnome-terminal -e" output="screen" /> 
+
+
+</launch>

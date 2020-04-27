@@ -1,0 +1,7 @@
+bool startSolver
+uint8 start
+uint8 target
+float32 tempDeadLine
+float32 failProb
+---
+uint8 flagFinish

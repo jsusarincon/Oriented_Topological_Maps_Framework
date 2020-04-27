@@ -1,0 +1,19 @@
+load pioneer and se1
+ 
+roslaunch logical_camera_plugin/launch/main.launch 
+
+move robot
+ rosrun p3dx_mover mover.py
+
+Run gmapping
+rosrun gmapping slam_gmapping scan:=scan _odom_frame:=odom _base_frame:=pioneer3at_with_sensors::chassis
+
+visualize map and laser
+
+rosrun rviz rviz   
+
+change base frame to pioneer3at_with_sensors::chassis
+
+add topics like laser, map, tf
+
+rostopic pub -1 /cmd_vel geometry_msgs/Twist -- '[0.0, 0.0, 0.0]' '[0.0, 0.0, 1.8]' 

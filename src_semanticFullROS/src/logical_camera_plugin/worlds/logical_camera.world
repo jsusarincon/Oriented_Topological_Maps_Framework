@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="default">
+
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <model name="p3at">
+    <plugin name="logical_camera" filename="liblogical_camera_plugin.so"/>
+      <include>
+        <uri>model://pioneer3at_with_sensors</uri>
+        <pose>0 0 0 0 0 0</pose>
+      </include>
+
+      <link name="logical_camera_link">
+        <sensor name="logical_camera" type="logical_camera">
+	<pose>0.2 0 0.2 0 0 0</pose>
+          <logical_camera>
+            <near>0.55</near>
+            <far>2.5</far>
+            <horizontal_fov>1.05</horizontal_fov>
+            <aspect_ratio>1.8</aspect_ratio>
+          </logical_camera>
+
+          <visualize>true</visualize>
+          <always_on>true</always_on>
+          <update_rate>10</update_rate>
+        </sensor>
+      </link>
+
+      <joint name="logical_camera_joint" type="fixed">
+        <child>logical_camera_link</child>
+	<parent>pioneer3at_with_sensors::chassis</parent>
+      </joint>
+
+      <include>
+	<uri>model://hokuyo</uri>
+	<pose>0.2 0 0.2 0 0 0</pose>
+      </include>
+
+      <joint name="hokuyo_joint" type="fixed">
+        <child>hokuyo::link</child>
+	<parent>pioneer3at_with_sensors::chassis</parent>
+      </joint>
+
+    </model>
+    
+    <model name="se1f1">
+      <include>
+        <uri>model://se1f1</uri>
+        <pose>0 0 0 0 0 0</pose>
+      </include>
+    </model>
+
+  </world>
+</sdf>

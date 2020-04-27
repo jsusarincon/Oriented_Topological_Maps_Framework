@@ -1,0 +1,9 @@
+string modelName
+string modelNameTouched
+float32 pos_x
+float32 pos_y
+float32 pos_z
+float32 norm_x
+float32 norm_y
+float32 norm_z
+float32 depth

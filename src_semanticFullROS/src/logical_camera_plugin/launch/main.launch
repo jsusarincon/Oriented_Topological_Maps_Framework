@@ -1,0 +1,73 @@
+<launch>
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+
+	 <arg name="world_name" value="$(find logical_camera_plugin)/worlds/se1f1_12.world" /> 
+
+ <!--
+ <arg name="world_name" value="$(find logical_camera_plugin)/worlds/logical_camera.world" /> 
+-->
+	<arg name="paused" value="false"/>
+    	<arg name="use_sim_time" value="true"/>
+    	<arg name="gui" value="true"/>
+    	<arg name="recording" value="false"/>
+    	<arg name="debug" value="false"/>
+
+  </include>
+
+<!-- Spawn a robot into Gazebo 
+<node name="spawn_sdf" pkg="gazebo_ros" type="spawn_model" args="-file ~/.gazebo/models/pioneer3at_with_sensors/model.sdf -model p3at" />
+-->
+
+  <node name="direction_robot_node" pkg="direction_robot" type="direction_robot_node.py"  output="screen" /> 
+
+<!-- <node name="create_topomap_node" pkg="create_topomap" type="create_topomap_node"  output="screen" />
+-->
+
+ <node name="moverKeyboard" pkg="p3dx_mover" type="moverJLS.py" launch-prefix="gnome-terminal -e " output="screen" />
+
+<!--
+<arg name="scan_topic" default="scan" />
+
+  <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
+    <param name="base_frame" value="pioneer3at_with_sensors::chassis"/>
+    <param name="odom_frame" value="odom"/>
+    <param name="map_update_interval" value="5.0"/>
+    <param name="maxUrange" value="6.0"/>
+    <param name="maxRange" value="8.0"/>
+    <param name="sigma" value="0.05"/>
+    <param name="kernelSize" value="1"/>
+    <param name="lstep" value="0.05"/>
+    <param name="astep" value="0.05"/>
+    <param name="iterations" value="5"/>
+    <param name="lsigma" value="0.075"/>
+    <param name="ogain" value="3.0"/>
+    <param name="lskip" value="0"/>
+    <param name="minimumScore" value="100"/>
+    <param name="srr" value="0.01"/>
+    <param name="srt" value="0.02"/>
+    <param name="str" value="0.01"/>
+    <param name="stt" value="0.02"/>
+    <param name="linearUpdate" value="0.5"/>
+    <param name="angularUpdate" value="0.436"/>
+    <param name="temporalUpdate" value="-1.0"/>
+    <param name="resampleThreshold" value="0.5"/>
+    <param name="particles" value="80"/>
+
+    <param name="xmin" value="-1.0"/>
+    <param name="ymin" value="-1.0"/>
+    <param name="xmax" value="1.0"/>
+    <param name="ymax" value="1.0"/>
+
+    <param name="delta" value="0.01"/>
+ 
+    <param name="llsamplerange" value="0.01"/>
+    <param name="llsamplestep" value="0.01"/>
+    <param name="lasamplerange" value="0.005"/>
+    <param name="lasamplestep" value="0.005"/>
+    <remap from="scan" to="$(arg scan_topic)"/>
+  </node>
+ <node pkg="tf" type="static_transform_publisher" name="tf_static_node" args=" -35 25 0 0 0 0 pioneer3at_with_sensors::chassis base_laser 100">
+  </node>
+-->
+</launch>
